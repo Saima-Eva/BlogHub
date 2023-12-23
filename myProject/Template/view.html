@@ -1,0 +1,28 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+<section class="blog-listings"> 
+    <h2>Latest Blog Listings</h2> 
+    <ul> 
+        {% for i in blog %}
+        <li> 
+            <h3>{{i.blog_title}}</h3> 
+            <p>Blog Name: {{i.blogger_bio}}</p> 
+            <p>Location: {{i.location}}</p> 
+            <p>Description: {{i.description}}</p> 
+            <p>Create By: {{i.job_creator}}</p> 
+            <p>Create Time: {{i.create_at}}</p> 
+            {% if user.user_type == 'viewers' %}
+            <a href=" {% url 'createBlog' i.id %} ">Create Now</a> 
+            {% endif %}
+
+            {% if user.user_type == 'bloggers' %}
+            <a href=" {% url 'editBlog' i.id %} ">Edit</a> 
+            <a href=" {% url 'deleteBlog' i.id %} ">Delete</a> 
+            {% endif %}
+        </li> 
+        {% endfor %}
+    </ul> 
+</section> 
+
+{% endblock content %}

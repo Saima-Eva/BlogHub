@@ -1,0 +1,27 @@
+{% block content %}
+
+<nav>
+
+
+    {% comment %} Bloggers can access below menu {% endcomment %}
+    
+   {% if user.user_type == 'bloggers' %}
+   
+   <a href="#home">Home</a>
+   <a href=" {% url 'addblog' %}" >Add Blog</a>
+   <a href="{% url 'viewBlog' %}">View Blog</a>
+   <a href="{% url 'ProfilePage' %}">Profile</a>
+   <a href="{% url 'logoutPage' %}">Logout</a>
+
+   {% comment %} viewers can access below menu {% endcomment %}
+
+    {% elif user.user_type == 'viewers' %}
+    <a href="#home">Home</a>
+    <a href="{% url 'viewjobPage' %}">View Blog</a>
+    <a href="#profile">Create Blog</a>
+    <a href="{% url 'ProfilePage' %}">Profile</a>
+    <a href="{% url 'logoutPage' %}">Logout</a>
+   {% endif %}
+
+</nav>
+{% endblock content %}
